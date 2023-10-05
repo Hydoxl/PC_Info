@@ -33,18 +33,4 @@ def convert_bytes(num):
     return "%.1f %s" % (num, 'PB')
 
 if __name__ == "__main__":
-    partitions = get_all_partitions()
-    for partition in partitions:
-        try:
-            usage = get_disk_usage(partition.mountpoint)
-            print(f"Disk: {partition.device}")
-            print(f"  Mountpoint: {partition.mountpoint}")
-            print(f"  Total Size: {convert_bytes(get_total_size(usage))}")
-            print(f"  Used: {convert_bytes(get_used_space(usage))}")
-            print(f"  Free: {convert_bytes(get_free_space(usage))}")
-            print(f"  Percentage Used: {get_percent_used(usage)}%")
-            print("---------------------------")
-        except PermissionError as e:
-            print(f"Unable to access {partition.device} due to permission issues: {e}")
-        except Exception as e:
-            print(f"An error occurred while accessing {partition.device}: {e}")
+    print("Please run main.py")

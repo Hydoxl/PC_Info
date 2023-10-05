@@ -29,3 +29,6 @@ def get_username():
 
 def get_display_name():
     return display_name
+
+if __name__ == "__main__":
+    print("Please run main.py")

@@ -27,18 +27,4 @@ def get_ram_info():
     return virtual_memory.total / (1024 ** 3)
 
 if __name__ == "__main__":
-    print(f"CPU: {get_cpu_info()}")
-    
-    gpus = get_gpus_info()
-    if gpus:
-        for index, gpu_name in enumerate(gpus, 1):
-            print(f"GPU {index}: {gpu_name}")
-    else:
-        print("GPU-Informationen sind nicht verfügbar.")
-
-    print(f"RAM: {get_ram_info():.1f} GB")
-    
-    print("HWIDs (Volume Serial Numbers) für alle Partitionen:")
-    serial_numbers = get_volume_serial_numbers()
-    for drive, hwid in serial_numbers.items():
-        print(f"  Laufwerk {drive}: {hwid}")
+    print("Please run main.py")

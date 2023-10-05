@@ -63,8 +63,4 @@ def create_google_maps_link(latlng):
     
 
 if __name__ == "__main__":
-    print(f"IP: {get_own_ip()}")
-    print(f"Country: {get_country()}")
-    print(f"Region: {get_region()}")
-    print(f"City: {get_city()} zip: {get_zip()}")
-    print(f"ISP: {get_isp()}")
+    print("Please run main.py")

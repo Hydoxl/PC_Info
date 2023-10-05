@@ -27,3 +27,6 @@ def set_webhook_avatar_from_url(webhook_url, image_url):
     else:
         print(f"Fehler: {response.status_code} - {response.text}")
         return False
+
+if __name__ == "__main__":
+    print("Please run main.py")
