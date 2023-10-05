@@ -1,6 +1,7 @@
 import requests
 import base64
 
+
 def set_webhook_avatar_from_url(webhook_url, image_url):
     # Download an image from a given URL
     response = requests.get(image_url)
@@ -15,12 +16,10 @@ def set_webhook_avatar_from_url(webhook_url, image_url):
 
     # Update a webhook's avatar using the provided image
     headers = {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
     }
 
-    data = {
-        'avatar': 'data:image/jpeg;base64,' + img_str.decode('utf-8')
-    }
+    data = {"avatar": "data:image/jpeg;base64," + img_str.decode("utf-8")}
 
     # Send a PATCH request to update the webhook's avatar
     response = requests.patch(webhook_url, headers=headers, json=data)
@@ -31,6 +30,7 @@ def set_webhook_avatar_from_url(webhook_url, image_url):
     else:
         print(f"Error: {response.status_code} - {response.text}")
         return False
+
 
 if __name__ == "__main__":
     print("Please run main.py")
