@@ -40,7 +40,7 @@ RAM: {system_info.get_ram_info():.1f} GB
 
 embed = DiscordEmbed(title=title, description=description, color=color)
 embed.add_embed_field(name=":bust_in_silhouette: User", value=f"```Display Name: {user_info.get_display_name()} \nHostname: {user_info.get_hostname()} \nUsername: {user_info.get_username()}```", inline=False)
-embed.add_embed_field(name=":CPU: System", value=system_field_value, inline=False)
+embed.add_embed_field(name=":desktop: System", value=system_field_value, inline=False)
 
 
 for partition in partitions:
