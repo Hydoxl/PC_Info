@@ -1,3 +1,5 @@
+import geo
+latlng = geo.get_location()
 
 # set default values
 DEFAULT_COLOR = int("000000", 16)
